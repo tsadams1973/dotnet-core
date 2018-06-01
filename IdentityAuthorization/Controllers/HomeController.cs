@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using IdentityAuthorization.Models;
 
 namespace IdentityAuthorization.Controllers
@@ -15,6 +17,7 @@ namespace IdentityAuthorization.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
