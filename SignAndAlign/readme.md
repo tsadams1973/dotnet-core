@@ -6,5 +6,6 @@ A fun project to practice some coding.
 # CLI Reference
 To create the app: 
 ```dotnet new console```
+
 To add the CLI package: 
 ```dotnet add package Microsoft.Extensions.CommandLineUtils```
