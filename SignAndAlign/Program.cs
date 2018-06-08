@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.CommandLineUtils;
 
 namespace SignAndAlign
@@ -17,11 +18,30 @@ namespace SignAndAlign
                 var keypass = config.Argument("password","The password for your keystore.",false);
                 config.OnExecute(()=>{
 
-                    
+                    try{
+                        var alignedFileName = Align.AlignApk(apkname.Value);
 
-                    Console.WriteLine($"Signed {apkname.Value} using {keystorename.Value} and password {keypass.Value}.");
-                    return 0;
+                        Console.WriteLine("");
+                        Console.WriteLine("Success aligning apk.");
+                        Console.WriteLine("");
 
+                        var signedFileName = Sign.SignApk(alignedFileName, keystorename.Value, keypass.Value);
+
+                        Console.WriteLine("");
+                        Console.WriteLine("Success signing apk.");
+                        Console.WriteLine("");
+
+                        return 0;
+
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine("");
+
+                        return 1;
+                    }                 
 
                 });
             });
@@ -42,7 +62,7 @@ namespace SignAndAlign
 
             app.HelpOption("--help");
 
-            var result = app.Execute(args);
+            var result =  app.Execute(args);
             Environment.Exit(result);
         }
     }
