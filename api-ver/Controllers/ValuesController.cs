@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace api_ver.Controllers
 { 
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ValuesController : ControllerBase
     {
@@ -26,6 +28,7 @@ namespace api_ver.Controllers
 
         // POST api/values
         [HttpPost]
+        [MapToApiVersion("2.0")]
         public void Post([FromBody] string value)
         {
         }

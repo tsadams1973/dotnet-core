@@ -43,10 +43,11 @@ namespace api_ver
                     // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
                     options.ReportApiVersions = true;
 
-                    options.Conventions.Controller<ValuesController>()
+                    /* options.Conventions.Controller<ValuesController>()
                     .HasApiVersion( 1, 0 )
+                    .HasApiVersion( 1, 1 )
                     .HasApiVersion(2,0)
-                    .HasApiVersion(3,0);
+                    .HasApiVersion(3,0); */
                 }
             );
 
